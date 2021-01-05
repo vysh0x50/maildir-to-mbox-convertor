@@ -1,1 +1,1 @@
-# mbox-to-maildir-convertor
+# maildir-to-mbox-convertor
