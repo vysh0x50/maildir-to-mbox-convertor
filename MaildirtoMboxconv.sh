@@ -62,13 +62,3 @@ mkdir /home/$user/Mail_backup
     done
     echo "Converted inbox to mbox format, please check the output in /home/$user/Mail_backup"
 fi
-
-
-
-default_folders= (cur new temp)
-for $mail_dir in "${default_folders[@]}"
-do
-    for file in find /home/txgraphi/mail/txgraphics.com/dan/cur -type f
-do
- cat $file | formail -A Date: &gt;&gt; /home/vyshnavlalp/mbox
-done
