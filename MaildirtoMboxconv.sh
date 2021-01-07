@@ -13,6 +13,7 @@ domain=`echo $email_account | awk -F\@ '{print $2'}`
 user_name=`echo $email_account | awk -F\@ '{print $1}'`
 user=`fgrep "$domain" /etc/userdomains | awk '{print $2}'`
 
+#checking the respective cPanel user exist or not
 if [ -z "$user" ];then
     echo "cPanel User not found !"
     exit
@@ -28,7 +29,9 @@ else
 fi
 
 cd /home/$user/mail/$domain/$user_name
+#creating a list of custom mail folders
 directory_list=( $(ls -a | grep -E "^\.[a-zA-Z0-9]" | awk -F\. '{print $2}') )
+#array of possible inputs
 possible_inputs=(inbox Inbox INBOX)
 
 mkdir /home/$user/Mail_backup
@@ -54,6 +57,7 @@ elif [[ " ${directory_list} " =~ " ${mail_dir,,} " ]]; then
     echo "Finished converting !"
 fi
 
+#zipping the backup
 echo "Zipping the output..."
 cd /home/$user
 zip -r mailBackup.zip Mail_backup
