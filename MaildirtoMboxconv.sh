@@ -58,8 +58,8 @@ elif [[ " ${directory_list} " =~ " ${mail_dir,,} " ]]; then
 fi
 
 #zipping the backup
-echo "Zipping the output..."
+echo "Creating a zip of the mail backup..."
 cd /home/$user
 zip -r mailBackup.zip Mail_backup
-echo "Zipped the backup, check /home/"$user""
+echo "Zip file created and placed it in /home/"$user" as mailBackup.zip"
 rm -rf Mail_backup
