@@ -1,4 +1,8 @@
 #!/bin/bash
+#########################################################
+#                   Maildir to Mbox Convertor           #
+######################################################### 
+
 echo "Enter the Email account: "
 read email_account
 echo
