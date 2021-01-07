@@ -9,7 +9,7 @@ domain= echo $email_account | awk -F\@ '{print $2'}
 user_name= echo $email_account | awk -F\@ '{print $1}'
 user= fgrep "$domain" /etc/userdomains | awk '{print $2}'
 
-if [-z $user];then
+if [-z "$user"];then
     echo "cPanel User not found !"
     exit
 else
