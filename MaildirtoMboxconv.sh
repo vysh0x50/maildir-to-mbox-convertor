@@ -41,20 +41,16 @@ if [[ " ${possible_inputs} " =~ " ${mail_dir} " ]]; then
     #converting cur to mbox
     for file in `find /home/$user/mail/$domain/$user_name/cur -type f`
     do
-        cat $file | formail -A Date: >> /home/$user/Mail_backup/cur.mbox
+        cat $file | formail -A Date: >> /home/$user/Mail_backup/inbox.mbox
     done
    
     #converting new to mbox
     for file in `find /home/$user/mail/$domain/$user_name/new -type f`
     do
-        cat $file | formail -A Date: >> /home/$user/Mail_backup/new.mbox
+        cat $file | formail -A Date: >> /home/$user/Mail_backup/inbox.mbox
     done
     cd /home/$user/Mail_backup
 
-    #combining cur and new to inbox
-    cat cur.mbox new.mbox > inbox.mbox
-    rm -f cur.mbox
-    rm -f new.mbox
     echo "Finished converting !"
     echo
 elif [[ " ${directory_list[@],,} " =~ " ${mail_dir,,} " ]]; then
@@ -72,7 +68,6 @@ echo "Creating a zip of the mail backup..."
 echo
 
 cd /home/$user
-#chown $user:$user Mail_backup -R
 zip -r "$user_name""_""$mail_dir.zip" Mail_backup
 rm -rf Mail_backup
 chown $user:$user "$user_name""_""$mail_dir.zip"
